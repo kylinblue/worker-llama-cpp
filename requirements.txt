@@ -1,0 +1,7 @@
+runpod~=1.7.0
+huggingface-hub
+httpx
+packaging
+typing-extensions==4.7.1
+hf-transfer
+transformers
