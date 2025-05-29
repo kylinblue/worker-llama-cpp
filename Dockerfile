@@ -8,6 +8,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y --no-install-recommends \
     python3-pip \
     git \
+    cmake \
     && rm -rf /var/lib/apt/lists/*
 
 # Set working directory for building llama.cpp
@@ -16,7 +17,7 @@ WORKDIR /build
 # Clone llama.cpp repository and build it
 RUN git clone https://github.com/ggerganov/llama.cpp.git
 WORKDIR /build/llama.cpp
-RUN make
+RUN cmake . -DLLAMA_CUBLAS=ON && cmake --build . --config Release
 
 
 # ===== Final Runtime Stage =====
